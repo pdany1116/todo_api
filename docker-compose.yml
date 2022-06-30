@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: ${TODO_API_DB_USERNAME}
+      POSTGRES_PASSWORD: ${TODO_API_DB_PASSWORD}
+    ports:
+      - '5432:5432'
+    volumes:
+      - /data:/var/lib/postgresql/data
+
+  todo-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bundle exec rails server -b 0.0.0.0
+    volumes:
+      - .:/usr/local/todo-api
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    env_file:
+      - .env
