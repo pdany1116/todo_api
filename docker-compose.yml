@@ -4,6 +4,7 @@ services:
   postgres:
     # Image to build
     image: postgres:latest
+    container_name: todo-api-db
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
@@ -15,6 +16,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: todo-api
     command: bundle exec rails server -b 0.0.0.0
     volumes:
       - .:/usr/local/todo-api
