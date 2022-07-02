@@ -6,7 +6,7 @@ Step 1. Create development environment variables file and replace necessary vari
 > cp .env.example .env
 
 Step 2. Build docker image
-> docker-compose build todo-api
+> docker-compose build
 
 Step 3. Create development database
 > docker-compose run todo-api rails db:create db:migrate
