@@ -1,0 +1,12 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  timeout: 5000
+
+development:
+  <<: *default
+  url: postgres://user:password@postgres/todo_api_development
+
+test:
+  <<: *default
+  url: postgres://user:password@postgres/todo_api_test

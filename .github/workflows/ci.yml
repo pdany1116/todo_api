@@ -1,15 +1,21 @@
+# This is a basic workflow to help you get started with Actions
+
 name: CI
 
+# Controls when the workflow will run
 on:
-  pull_request:
+  push:
     branches: [ "main" ]
 
-  # Allows to run this workflow manually from the Actions tab
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   validate:
     runs-on: ubuntu-latest
+    container:
+      image: ruby:3.1.2
 
     services:
       postgres:
@@ -18,27 +24,38 @@ jobs:
           POSTGRES_USER: user
           POSTGRES_PASSWORD: password
           POSTGRES_DB: postgres
-          POSTGRES_HOST: postgres
         ports:
           - 5432:5432
         # needed because the postgres container does not provide a healthcheck
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: Create test env file
-        run: echo "DATABASE_URL=postgres://user:password@${{ job.services.postgres.network }}:${{ job.services.postgres.ports[5432] }}/todo_api_test" >> .env.test
+      - name: Bundle install
+        env:
+          RAILS_ENV: test
+        run: gem install rails bundler
 
-      - name: Build todo_api
-        run: docker build -t todo-api -f Dockerfile .
+      - name: Setup Config
+        env:
+          PGHOST: postgres
+          PGUSER: postgres
+          PGPORT: ${{ job.services.postgres.ports[5432] }}
+          RAILS_ENV: test
+        run: |
+          rm config/database.yml
+          cp config/database.ci.yml config/database.yml
 
-      - name: Check coding style
-        run: docker run todo-api rubocop
+      - name: Run lint
+        run: rubocop
 
       - name: Create database
-        run: docker run todo-api rails db:create db:migrate RAILS_ENV=test
+        env:
+          RAILS_ENV: test
+        run: rails db:create db:migrate
 
       - name: Run tests
-        run: docker run todo-api rails spec
+        run: rails spec
