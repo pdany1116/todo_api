@@ -35,13 +35,7 @@ jobs:
           bundle install
 
       - name: Setup Config
-        env:
-          PGHOST: postgres
-          PGUSER: postgres
-          PGPORT: ${{ job.services.postgres.ports[5432] }}
-          RAILS_ENV: test
-        run: |
-          mv config/database.ci.yml config/database.yml
+        run: echo "DATABASE_URL=postgres://user:password@postgres/todo_api_test" > .env.test
 
       - name: Run lint
         run: bundle exec rubocop
