@@ -20,6 +20,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
+      - name: Create env file
+        run: echo "DATABASE_URL=postgres://postgres@postgres:5432/todo_api_test" >> .env.test
+
       - name: Build docker containers
         run: docker-compose build
 
