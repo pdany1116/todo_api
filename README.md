@@ -1,4 +1,4 @@
-# todo_api
+# ToDo - API
 Rails 7 ToDo API
 
 ## Setup
@@ -28,3 +28,4 @@ Step 3. Create test database
 
 Step 4. Run todo-api
 > docker-compose run todo-api rails spec
+
