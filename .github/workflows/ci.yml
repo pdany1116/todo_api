@@ -37,7 +37,9 @@ jobs:
       - name: Bundle install
         env:
           RAILS_ENV: test
-        run: gem install rails bundler
+        run: |
+          gem install rails bundler
+          bundle install
 
       - name: Setup Config
         env:
