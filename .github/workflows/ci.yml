@@ -26,8 +26,8 @@ jobs:
       - name: Build docker containers
         run: docker-compose build
 
-      - name: Create database
-        run: docker-compose run todo-api rails db:create db:migrate RAILS_ENV=test
+      #- name: Create database
+      #  run: docker-compose run todo-api rails db:create db:migrate RAILS_ENV=test
 
       - name: Check coding style
         run: rubocop
