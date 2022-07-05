@@ -24,7 +24,7 @@ Step 2. Build docker image
 > docker-compose build
 
 Step 3. Create test database
-> docker-compose run todo-api rails db:create RAILS_ENV=test
+> docker-compose run todo-api rails db:create db:migrate RAILS_ENV=test
 
 Step 4. Run todo-api
 > docker-compose run todo-api rails spec
