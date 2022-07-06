@@ -2,9 +2,9 @@
 
 FactoryBot.define do
   factory :todo do
-    title { 'Example title' }
+    title { Faker::Beer.brand }
     completed { false }
-    url { 'Example url' }
+    url { Faker::Internet.url }
     order { 1 }
   end
 end
