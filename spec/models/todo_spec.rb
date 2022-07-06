@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'uri'
-require 'faker'
 
 RSpec.describe Todo, type: :model do
   describe 'Validations' do
