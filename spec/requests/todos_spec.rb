@@ -27,20 +27,14 @@ RSpec.describe 'Todos', type: :request do
 
       it { expect(parsed_body.length).to be 1 }
 
-      it 'has correct title attribute' do
-        expect(parsed_body[0][:title]).to eq Todo.last.title
-      end
-
-      it 'has correct completed attribute' do
-        expect(parsed_body[0][:completed]).to eq Todo.last.completed
-      end
-
-      it 'has correct url attribute' do
-        expect(parsed_body[0][:url]).to eq Todo.last.url
-      end
-
-      it 'has correct order attribute' do
-        expect(parsed_body[0][:order]).to eq Todo.last.order
+      it 'has correct attributes' do
+        expect(parsed_body[0]).to match(hash_including({
+                                                         id: Todo.last.id,
+                                                         title: Todo.last.title,
+                                                         url: Todo.last.url,
+                                                         completed: Todo.last.completed,
+                                                         order: Todo.last.order
+                                                       }))
       end
     end
 
