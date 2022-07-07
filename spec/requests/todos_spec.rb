@@ -37,7 +37,7 @@ RSpec.describe 'Todos', type: :request do
         expect(parsed_body.length).to be 1
       end
 
-      it 'contains the correct todo' do
+      it 'contains the correct title field' do
         get_todos
 
         expect(parsed_body[0][:title]).to eq Todo.last.title
