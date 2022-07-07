@@ -35,11 +35,11 @@ RSpec.describe 'Todos', type: :request do
         expect(parsed_body[0][:completed]).to eq Todo.last.completed
       end
 
-      it 'has correct title attribute' do
+      it 'has correct url attribute' do
         expect(parsed_body[0][:url]).to eq Todo.last.url
       end
 
-      it 'has correct title attribute' do
+      it 'has correct order attribute' do
         expect(parsed_body[0][:order]).to eq Todo.last.order
       end
     end
