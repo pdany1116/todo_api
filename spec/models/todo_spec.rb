@@ -5,45 +5,33 @@ require 'rails_helper'
 RSpec.describe Todo, type: :model do
   describe 'Validations' do
     context 'with valid parameters' do
-      it 'is valid' do
-        todo = build(:todo)
+      subject(:todo) { build(:todo) }
 
-        expect(todo).to be_valid
-      end
+      it { is_expected.to be_valid }
     end
 
-    context 'with invalid parameters' do
-      context 'with invalid title' do
-        it 'is invalid' do
-          todo = build(:todo, title: nil)
+    context 'with invalid title' do
+      subject(:todo) { build(:todo, title: nil) }
 
-          expect(todo).not_to be_valid
-        end
-      end
+      it { is_expected.not_to be_valid }
+    end
 
-      context 'with invalid completed' do
-        it 'is invalid' do
-          todo = build(:todo, completed: nil)
+    context 'with invalid completed' do
+      subject(:todo) { build(:todo, completed: nil) }
 
-          expect(todo).not_to be_valid
-        end
-      end
+      it { is_expected.not_to be_valid }
+    end
 
-      context 'with invalid url' do
-        it 'is invalid' do
-          todo = build(:todo, url: nil)
+    context 'with invalid url' do
+      subject(:todo) { build(:todo, url: nil) }
 
-          expect(todo).not_to be_valid
-        end
-      end
+      it { is_expected.not_to be_valid }
+    end
 
-      context 'with invalid order' do
-        it 'is invalid' do
-          todo = build(:todo, order: nil)
+    context 'with invalid order' do
+      subject(:todo) { build(:todo, order: nil) }
 
-          expect(todo).not_to be_valid
-        end
-      end
+      it { is_expected.not_to be_valid }
     end
   end
 end
