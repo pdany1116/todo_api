@@ -7,47 +7,29 @@ RSpec.describe 'Todos', type: :request do
     subject(:get_todos) { get '/todos' }
 
     context 'with no todos added' do
-      let(:empty_array) { [] }
-
-      before { get_todos }
-
-      it { expect(response).to have_http_status(:ok) }
-
-      it { expect(parsed_body).to eq empty_array }
-    end
-
-    context 'with 1 todo added' do
-      before do
-        create(:todo)
-
+      it 'returns 200' do
         get_todos
+        expect(response).to have_http_status(:ok)
       end
 
-      it { expect(response).to have_http_status(:ok) }
-
-      it { expect(parsed_body.length).to be 1 }
-
-      it 'has correct attributes' do
-        expect(parsed_body[0]).to match(hash_including({
-                                                         id: Todo.last.id,
-                                                         title: Todo.last.title,
-                                                         url: Todo.last.url,
-                                                         completed: Todo.last.completed,
-                                                         order: Todo.last.order
-                                                       }))
+      it 'returns empty array' do
+        get_todos
+        expect(parsed_body).to eq []
       end
     end
 
     context 'with 5 todos added' do
-      before do
-        create_list(:todo, 5)
+      before { create_list(:todo, 5) }
 
+      it 'returns 200' do
         get_todos
+        expect(response).to have_http_status(:ok)
       end
 
-      it { expect(response).to have_http_status(:ok) }
-
-      it { expect(parsed_body.length).to be 5 }
+      it 'returns array with 5 todos' do
+        get_todos
+        expect(parsed_body.length).to be 5
+      end
     end
   end
 end
