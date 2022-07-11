@@ -36,4 +36,33 @@ RSpec.describe 'Todos', type: :request do
       end
     end
   end
+
+  describe 'GET /todos/:id' do
+    subject(:get_todo) { get "/todos/#{id}" }
+    let(:id) { 1 }
+
+    context 'with not existing todo' do
+      it 'returns 404' do
+        get_todo
+
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it 'returns empty body' do
+        get_todo
+
+        expect(response.body).to be_empty
+      end
+    end
+
+    context 'with existing todo' do
+      before { create(:todo, id:) }
+
+      it 'returns 200' do
+        get_todo
+
+        expect(response).to have_http_status(:ok)
+      end
+    end
+  end
 end
