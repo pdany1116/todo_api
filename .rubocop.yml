@@ -1,6 +1,7 @@
 AllCops:
   Exclude:
     - 'bin/*'
+    - 'lib/tasks/cucumber.rake'
   NewCops: enable
 
 Style/Documentation:
@@ -12,3 +13,8 @@ Style/NumericLiterals:
 Metrics/BlockLength:
   Exclude:
     - 'spec/*/*'
+
+Naming/AccessorMethodName:
+  Exclude:
+    - 'spec/*/*'
+    - 'features/*/*'
