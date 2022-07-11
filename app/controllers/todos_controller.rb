@@ -17,8 +17,8 @@ class TodosController < ApplicationController
     todo.save!
 
     render json: todo, status: :created
-  rescue ActionController::ParameterMissing, ActiveRecord::RecordInvalid => e
-    render json: e.message, status: :unprocessable_entity
+  rescue ActionController::ParameterMissing, ActiveRecord::RecordInvalid
+    render json: '', status: :unprocessable_entity
   end
 
   private
