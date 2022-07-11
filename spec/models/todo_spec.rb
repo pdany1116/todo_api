@@ -22,16 +22,28 @@ RSpec.describe Todo, type: :model do
       it { is_expected.not_to be_valid }
     end
 
-    context 'with invalid url' do
-      subject { build(:todo, url: nil) }
-
-      it { is_expected.not_to be_valid }
-    end
-
     context 'with invalid order' do
       subject { build(:todo, order: nil) }
 
       it { is_expected.not_to be_valid }
+    end
+  end
+
+  describe 'Initialization' do
+    context 'with missing completed' do
+      subject { build(:todo, attributes_for(:todo).slice(:title, :order, :url)) }
+
+      it 'has default value' do
+        expect(subject.completed).to be false
+      end
+    end
+
+    context 'with true completed' do
+      subject { build(:todo, completed: true) }
+
+      it 'does not override the value' do
+        expect(subject.completed).to be true
+      end
     end
   end
 end

@@ -3,4 +3,9 @@
 class Todo < ApplicationRecord
   validates :title, :url, :order, presence: true
   validates :completed, inclusion: { in: [true, false] }
+
+  def initialize(attributes)
+    super
+    self.completed = false unless completed
+  end
 end
