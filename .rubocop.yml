@@ -18,3 +18,6 @@ Naming/AccessorMethodName:
   Exclude:
     - 'spec/*/*'
     - 'features/*/*'
+
+RSpec/NamedSubject:
+  Enabled: false
