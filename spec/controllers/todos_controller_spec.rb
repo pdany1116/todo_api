@@ -38,14 +38,9 @@ RSpec.describe TodosController, type: :controller do
   end
 
   describe '#show' do
-    subject { get :show, params: }
+    subject { get :show, params: params }
 
-    let(:params) do
-      {
-        id:
-      }
-    end
-    let(:id) { 1 }
+    let(:params) { { id: 1 } }
 
     context 'with not existing todo' do
       it 'returns 404' do
@@ -62,7 +57,7 @@ RSpec.describe TodosController, type: :controller do
     end
 
     context 'with existing todo' do
-      before { create(:todo, id:) }
+      before { create(:todo, id: params[:id]) }
 
       it 'returns 200' do
         subject
