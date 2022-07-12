@@ -26,8 +26,5 @@ Step 2. Build docker image
 Step 3. Create test database
 > docker-compose run todo-api rails db:create db:migrate RAILS_ENV=test
 
-Step 4. Run specs
-> docker-compose run todo-api rails spec
-
-Step 5. Run features
-> docker-compose run todo-api bundle exec cucumber --publish-quiet
+Step 4. Run specs, integration tests and lint
+> docker-compose run todo-api rake RAILS_ENV=test

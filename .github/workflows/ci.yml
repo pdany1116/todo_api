@@ -37,13 +37,12 @@ jobs:
       - name: Setup Config
         run: echo "DATABASE_URL=postgres://user:password@postgres/todo_api_test" > .env.test
 
-      - name: Run lint
-        run: bundle exec rubocop
-
       - name: Create test database
         env:
           RAILS_ENV: test
         run: rails db:create db:migrate
 
-      - name: Run tests
-        run: rails spec
+      - name: Run rspec, cucumber, rubocop
+        env:
+          RAILS_ENV: test
+        run: rake
