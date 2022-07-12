@@ -39,6 +39,7 @@ RSpec.describe TodosController, type: :controller do
 
   describe '#show' do
     subject { get :show, params: }
+
     let(:params) do
       {
         id:
