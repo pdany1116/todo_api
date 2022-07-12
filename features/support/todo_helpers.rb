@@ -9,10 +9,10 @@ module TodoHelpers
   end
 
   def get_todos
-    get '/todos'
+    get todos_path
   end
 
   def get_todo(id)
-    get "/todos/#{id}"
+    get todo_path(id)
   end
 end
