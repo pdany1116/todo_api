@@ -14,4 +14,22 @@ class TodosController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     render json: '', status: :not_found
   end
+
+  def create
+    todo = Todo.create!(create_todo_params)
+    todo.url = "/todos/#{todo.id}"
+    todo.save!
+
+    render json: todo, status: :created
+  rescue ActionController::ParameterMissing, ActiveRecord::RecordInvalid
+    render json: '', status: :unprocessable_entity
+  end
+
+  private
+
+  def create_todo_params
+    params.require(:title)
+
+    params.permit(:title, :order)
+  end
 end

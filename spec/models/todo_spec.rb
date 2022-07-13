@@ -22,12 +22,6 @@ RSpec.describe Todo, type: :model do
       it { is_expected.not_to be_valid }
     end
 
-    context 'with invalid url' do
-      subject { build(:todo, url: nil) }
-
-      it { is_expected.not_to be_valid }
-    end
-
     context 'with invalid order' do
       subject { build(:todo, order: nil) }
 
