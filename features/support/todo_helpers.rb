@@ -4,8 +4,8 @@ module TodoHelpers
   include FactoryBot::Syntax::Methods
 
   def create_todo
-    create(:todo)
-    @last_todo_id = Todo.last.id
+    post todos_path, attributes_for(:todo).slice(:title)
+    @last_todo_id = parsed_body['id']
   end
 
   def get_todos
