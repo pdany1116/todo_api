@@ -2,6 +2,7 @@ AllCops:
   Exclude:
     - 'bin/*'
     - 'lib/tasks/cucumber.rake'
+    - 'db/schema.rb'
   NewCops: enable
 
 Style/Documentation:
@@ -18,3 +19,6 @@ Naming/AccessorMethodName:
   Exclude:
     - 'spec/*/*'
     - 'features/*/*'
+
+RSpec/NamedSubject:
+  Enabled: false
