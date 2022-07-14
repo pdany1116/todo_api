@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.describe TodoSerializer do
-  include Rails.application.routes.url_helpers
-
   subject { described_class.new(todo) }
 
   let(:todo) { build(:todo) }
@@ -28,6 +26,6 @@ RSpec.describe TodoSerializer do
   end
 
   it 'has the correct url' do
-    expect(subject.attributes[:url]).to eq "#{todos_url}/#{todo.id}"
+    expect(subject.attributes[:url]).to eq "#{ENV.fetch('HOST_URL')}/#{todo.id}"
   end
 end
