@@ -17,8 +17,6 @@ class TodosController < ApplicationController
 
   def create
     todo = Todo.create!(create_todo_params)
-    todo.url = "/todos/#{todo.id}"
-    todo.save!
 
     render json: todo, status: :created
   rescue ActionController::ParameterMissing, ActiveRecord::RecordInvalid
