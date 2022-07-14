@@ -1,7 +1,7 @@
 build:
   docker:
     web: Dockerfile
-config:
-  HOST_URL: https://${HEROKU_APP_NAME}.herokuapp.com/
+  config:
+    HOST_URL: https://${HEROKU_APP_NAME}.herokuapp.com/
 run:
   web: bundle exec rails server -b 0.0.0.0 -p ${PORT}
