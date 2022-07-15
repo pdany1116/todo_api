@@ -133,10 +133,10 @@ RSpec.describe TodosController, type: :controller do
     let(:params) { { id: 1 } }
 
     context 'with not existing todo' do
-      it 'returns 204' do
+      it 'returns 404' do
         subject
 
-        expect(response).to have_http_status(:no_content)
+        expect(response).to have_http_status(:not_found)
       end
     end
 

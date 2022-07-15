@@ -24,9 +24,11 @@ class TodosController < ApplicationController
   end
 
   def destroy
-    Todo.delete(params[:id])
+    Todo.find(params[:id]).destroy
 
     render json: '', status: :no_content
+  rescue ActiveRecord::RecordNotFound
+    render json: '', status: :not_found
   end
 
   private
