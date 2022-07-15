@@ -11,3 +11,7 @@ Feature: Todo API
     Given a todo exists
     When I retrieve that todo
     Then I will get a response with that todo
+
+  Scenario: Create a todo
+    When I create a todo
+    Then It should respond with the created todo
