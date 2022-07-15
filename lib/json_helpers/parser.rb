@@ -9,5 +9,9 @@ module JsonHelpers
     def to_hash
       JSON.parse(@content, symbolize_names: true)
     end
+
+    def self.to_hash(content)
+      JSON.parse(content, symbolize_names: true)
+    end
   end
 end

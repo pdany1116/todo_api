@@ -27,7 +27,7 @@ Then 'I will get a response with a list containing a todo' do
 end
 
 Then 'I will get a response with that todo' do
-  expect(parsed_body['id']).to be @last_todo_id
+  expect(parsed_body[:id]).to be @last_todo_id
 end
 
 Then 'I will get a response with the created todo' do

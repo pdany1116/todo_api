@@ -4,11 +4,10 @@ require './lib/json_helpers'
 
 module TodoHelpers
   include FactoryBot::Syntax::Methods
-  include JsonHelpers
 
   def create_todo
-    post todos_path, Parser.new(SHARED_DIR.join('todos/requests/create.json')).to_hash
-    @last_todo_id = parsed_body['id']
+    post todos_path, hash_from_json_file('todos/requests/create.json')
+    @last_todo_id = parsed_body[:id]
   end
 
   def get_todos
@@ -23,9 +22,11 @@ module TodoHelpers
     "#{ENV.fetch('HOST_URL')}/#{id}"
   end
 
-  def hash_from_json_file(filename, args)
-    formatted_content = Formatter.new(SHARED_DIR.join(filename)).format_content(args)
+  def hash_from_json_file(filename, args = {})
+    return JsonHelpers::Parser.new(SHARED_DIR.join(filename)).to_hash if args.empty?
 
-    JSON.parse(formatted_content, symbolized_names: true)
+    content = JsonHelpers::Formatter.new(SHARED_DIR.join(filename)).format_content(args)
+
+    JsonHelpers::Parser.to_hash(content)
   end
 end
