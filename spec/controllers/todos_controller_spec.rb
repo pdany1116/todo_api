@@ -66,4 +66,64 @@ RSpec.describe TodosController, type: :controller do
       end
     end
   end
+
+  describe '#create' do
+    subject { post :create, params: }
+
+    let(:params) { { title:, order: } }
+
+    context 'with valid params' do
+      let(:title) { Faker::Beer.brand }
+      let(:order) { 1 }
+
+      it 'returns 201' do
+        subject
+
+        expect(response).to have_http_status(:created)
+      end
+    end
+
+    context 'with missing title' do
+      let(:params) { { order: 1 } }
+
+      it 'returns 422' do
+        subject
+
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+
+    context 'with invalid title' do
+      let(:title) { nil }
+      let(:order) { 1 }
+
+      it 'returns 422' do
+        subject
+
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+
+    context 'with missing order' do
+      let(:params) { { title: } }
+      let(:title) { Faker::Beer.brand }
+
+      it 'returns 201' do
+        subject
+
+        expect(response).to have_http_status(:created)
+      end
+    end
+
+    context 'with invalid order' do
+      let(:title) { Faker::Beer.brand }
+      let(:order) { nil }
+
+      it 'returns 422' do
+        subject
+
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+  end
 end

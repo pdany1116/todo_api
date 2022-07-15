@@ -8,6 +8,10 @@ end
 
 # Actions
 
+When 'I create a todo' do
+  create_todo
+end
+
 When 'I retrieve the list of todos' do
   get_todos
 end
@@ -23,5 +27,11 @@ Then 'I will get a response with a list containing a todo' do
 end
 
 Then 'I will get a response with that todo' do
-  expect(parsed_body['id']).to be @last_todo_id
+  expect(parsed_body[:id]).to be @last_todo_id
+end
+
+Then 'I will get a response with the created todo' do
+  args = { id: @last_todo_id, url: todos_url_for(@last_todo_id) }
+
+  expect(parsed_body).to eq hash_from_json_file('todos/responses/create.json', args)
 end
