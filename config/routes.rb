@@ -2,4 +2,6 @@
 
 Rails.application.routes.draw do
   resources :todos, only: %i[index show create destroy]
+
+  delete :todos, to: 'todos#delete_all'
 end

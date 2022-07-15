@@ -5,7 +5,7 @@ Feature: Todo API
   Scenario: Get all todos
     Given a todo exists
     When I retrieve the list of todos
-    Then I will get a response with a list containing a todo
+    Then I will get a response with a list containing 1 todos
 
   Scenario: Get a todo
     Given a todo exists
@@ -22,3 +22,10 @@ Feature: Todo API
     Then It should respond with no content
     When I retrieve that todo
     Then It should respond with not found
+
+  Scenario: Delete all todos
+    Given a todo exists
+    When I delete all todos
+    Then It should respond with no content
+    When I retrieve the list of todos
+    Then I will get a response with a list containing 0 todos

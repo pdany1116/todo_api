@@ -127,6 +127,28 @@ RSpec.describe TodosController, type: :controller do
     end
   end
 
+  describe '#delete' do
+    subject { delete :delete_all }
+
+    context 'with not existing todos' do
+      it 'returns 204' do
+        subject
+
+        expect(response).to have_http_status(:no_content)
+      end
+    end
+
+    context 'with 5 existing todos' do
+      before { create_list(:todo, 5) }
+
+      it 'returns 204' do
+        subject
+
+        expect(response).to have_http_status(:no_content)
+      end
+    end
+  end
+
   describe '#destroy' do
     subject { delete :destroy, params: }
 

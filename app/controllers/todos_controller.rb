@@ -31,6 +31,12 @@ class TodosController < ApplicationController
     render json: '', status: :not_found
   end
 
+  def delete_all
+    Todo.delete_all
+
+    render json: '', status: :no_content
+  end
+
   private
 
   def create_todo_params
