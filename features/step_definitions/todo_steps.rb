@@ -30,7 +30,7 @@ When 'I delete that todo' do
   delete_todo(@last_todo_id)
 end
 
-Then 'I will get a response with a list containing {int} todos' do |count|
+Then 'I will get a response with a list containing {int} todo(s)' do |count|
   expect(parsed_body.length).to be count
 end
 

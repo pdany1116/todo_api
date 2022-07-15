@@ -5,7 +5,7 @@ Feature: Todo API
   Scenario: Get all todos
     Given a todo exists
     When I retrieve the list of todos
-    Then I will get a response with a list containing 1 todos
+    Then I will get a response with a list containing 1 todo
 
   Scenario: Get a todo
     Given a todo exists
