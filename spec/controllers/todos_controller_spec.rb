@@ -127,7 +127,7 @@ RSpec.describe TodosController, type: :controller do
     end
   end
 
-  describe '#delete' do
+  describe '#delete_all' do
     subject { delete :delete_all }
 
     context 'with not existing todos' do
