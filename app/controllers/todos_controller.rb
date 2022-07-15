@@ -23,6 +23,12 @@ class TodosController < ApplicationController
     render json: '', status: :unprocessable_entity
   end
 
+  def destroy
+    Todo.delete(params[:id])
+
+    render json: '', status: :no_content
+  end
+
   private
 
   def create_todo_params

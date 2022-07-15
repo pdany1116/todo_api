@@ -126,4 +126,28 @@ RSpec.describe TodosController, type: :controller do
       end
     end
   end
+
+  describe '#destroy' do
+    subject { delete :destroy, params: }
+
+    let(:params) { { id: 1 } }
+
+    context 'with not existing todo' do
+      it 'returns 204' do
+        subject
+
+        expect(response).to have_http_status(:no_content)
+      end
+    end
+
+    context 'with existing todo' do
+      before { create(:todo, id: params[:id]) }
+
+      it 'returns 204' do
+        subject
+
+        expect(response).to have_http_status(:no_content)
+      end
+    end
+  end
 end

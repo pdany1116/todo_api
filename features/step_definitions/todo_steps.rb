@@ -22,6 +22,10 @@ end
 
 # Asserts
 
+When 'I delete that todo' do
+  delete_todo(@last_todo_id)
+end
+
 Then 'I will get a response with a list containing a todo' do
   expect(parsed_body.length).to be 1
 end
@@ -34,4 +38,12 @@ Then 'I will get a response with the created todo' do
   args = { id: @last_todo_id, url: todos_url_for(@last_todo_id) }
 
   expect(parsed_body).to eq hash_from_json_file('todos/responses/create.json', args)
+end
+
+Then 'It should respond with no content' do
+  expect(last_response.status).to eq 204
+end
+
+Then 'It should respond with not found' do
+  expect(last_response.status).to eq 404
 end

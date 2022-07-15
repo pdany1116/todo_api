@@ -18,6 +18,10 @@ module TodoHelpers
     get todo_path(id)
   end
 
+  def delete_todo(id)
+    delete todo_path(id)
+  end
+
   def todos_url_for(id)
     "#{ENV.fetch('HOST_URL')}/#{id}"
   end

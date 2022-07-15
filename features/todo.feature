@@ -15,3 +15,11 @@ Feature: Todo API
   Scenario: Create a todo
     When I create a todo
     Then I will get a response with the created todo
+
+  Scenario: Delete a todo
+    When I create a todo
+    Then I will get a response with the created todo
+    When I delete that todo
+    Then It should respond with no content
+    When I retrieve that todo
+    Then It should respond with not found
