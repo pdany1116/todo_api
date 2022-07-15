@@ -14,4 +14,4 @@ Feature: Todo API
 
   Scenario: Create a todo
     When I create a todo
-    Then It should respond with the created todo
+    Then I will get a response with the created todo

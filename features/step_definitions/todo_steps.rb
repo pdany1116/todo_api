@@ -30,10 +30,8 @@ Then 'I will get a response with that todo' do
   expect(parsed_body['id']).to be @last_todo_id
 end
 
-Then 'It should respond with the created todo' do
-  formatter = JsonHelpers::Formatter.new(SHARED_DIR.join('todos/responses/create.json'))
+Then 'I will get a response with the created todo' do
   args = { id: @last_todo_id, url: todos_url_for(@last_todo_id) }
-  expected_response = JSON.parse(formatter.format_content(args), symbolized_names: true)
 
-  expect(parsed_body).to eq expected_response
+  expect(parsed_body).to eq hash_from_json_file('todos/responses/create.json', args)
 end
