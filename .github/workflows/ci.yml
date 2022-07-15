@@ -24,25 +24,21 @@ jobs:
         # needed because the postgres container does not provide a healthcheck
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
+    env:
+      RAILS_ENV: test
+      HOST_URL: http://localhost:3000
+      DATABASE_URL: postgres://user:password@postgres/todo_api_test
+
     steps:
       - uses: actions/checkout@v3
 
       - name: Bundle install
-        env:
-          RAILS_ENV: test
         run: |
           gem install bundler
           bundle install
 
-      - name: Setup Config
-        run: echo "DATABASE_URL=postgres://user:password@postgres/todo_api_test" > .env.test
-
       - name: Create test database
-        env:
-          RAILS_ENV: test
         run: rails db:create db:migrate
 
       - name: Run rspec, cucumber, rubocop
-        env:
-          RAILS_ENV: test
         run: rake
