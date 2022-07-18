@@ -130,19 +130,22 @@ RSpec.describe TodosController, type: :controller do
   describe '#update' do
     subject { patch :update, params: }
 
-    let(:params) { { id:, title:, order:, completed: } }
-    let(:id) { 1 }
+    let(:params) { default_params }
+    let(:default_params) do
+      {
+        id: 1,
+        title: Faker::Beer.brand,
+        order: 1,
+        completed: true
+      }
+    end
 
     context 'with existing todo' do
       before do
-        create(:todo, id:)
+        create(:todo, id: params[:id])
       end
 
       context 'with valid params' do
-        let(:title) { Faker::Beer.brand }
-        let(:order) { 1 }
-        let(:completed) { true }
-
         it 'returns 200' do
           subject
 
@@ -151,9 +154,7 @@ RSpec.describe TodosController, type: :controller do
       end
 
       context 'with missing title' do
-        let(:params) { { id:, order:, completed: } }
-        let(:order) { 1 }
-        let(:completed) { true }
+        let(:params) { default_params.except(:title) }
 
         it 'returns 422' do
           subject
@@ -163,9 +164,7 @@ RSpec.describe TodosController, type: :controller do
       end
 
       context 'with invalid title' do
-        let(:title) { nil }
-        let(:order) { 1 }
-        let(:completed) { true }
+        let(:params) { default_params.update({ title: nil }) }
 
         it 'returns 422' do
           subject
@@ -175,9 +174,7 @@ RSpec.describe TodosController, type: :controller do
       end
 
       context 'with missing order' do
-        let(:params) { { id:, title:, completed: } }
-        let(:title) { Faker::Beer.brand }
-        let(:completed) { true }
+        let(:params) { default_params.except(:order) }
 
         it 'returns 200' do
           subject
@@ -187,9 +184,7 @@ RSpec.describe TodosController, type: :controller do
       end
 
       context 'with invalid order' do
-        let(:title) { Faker::Beer.brand }
-        let(:order) { nil }
-        let(:completed) { true }
+        let(:params) { default_params.update({ order: nil }) }
 
         it 'returns 422' do
           subject
@@ -199,9 +194,7 @@ RSpec.describe TodosController, type: :controller do
       end
 
       context 'with missing completed' do
-        let(:params) { { id:, title:, order: } }
-        let(:title) { Faker::Beer.brand }
-        let(:order) { 1 }
+        let(:params) { default_params.except(:completed) }
 
         it 'returns 200' do
           subject
@@ -211,9 +204,7 @@ RSpec.describe TodosController, type: :controller do
       end
 
       context 'with invalid completed' do
-        let(:title) { Faker::Beer.brand }
-        let(:order) { 1 }
-        let(:completed) { nil }
+        let(:params) { default_params.update({ completed: nil }) }
 
         it 'returns 422' do
           subject
@@ -224,10 +215,6 @@ RSpec.describe TodosController, type: :controller do
     end
 
     context 'with not existing todo' do
-      let(:title) { Faker::Beer.brand }
-      let(:order) { 1 }
-      let(:completed) { true }
-
       it 'returns 404' do
         subject
 
