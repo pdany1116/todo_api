@@ -156,10 +156,10 @@ RSpec.describe TodosController, type: :controller do
       context 'with missing title' do
         let(:params) { default_params.except(:title) }
 
-        it 'returns 422' do
+        it 'returns 200' do
           subject
 
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(:ok)
         end
       end
 
