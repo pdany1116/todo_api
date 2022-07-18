@@ -29,3 +29,9 @@ Feature: Todo API
     Then It should respond with no content
     When I retrieve the list of todos
     Then I will get a response with a list containing 0 todos
+
+  Scenario: Update a todo
+    When I create a todo
+    Then I will get a response with the created todo
+    When I update that todo
+    Then I will get a response with the updated todo
