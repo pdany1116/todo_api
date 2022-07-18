@@ -127,6 +127,115 @@ RSpec.describe TodosController, type: :controller do
     end
   end
 
+  describe '#update' do
+    subject { patch :update, params: }
+
+    let(:params) { { id:, title:, order:, completed: } }
+    let(:id) { 1 }
+
+    context 'with existing todo' do
+      before do
+        create(:todo, id:)
+      end
+
+      context 'with valid params' do
+        let(:title) { Faker::Beer.brand }
+        let(:order) { 1 }
+        let(:completed) { true }
+
+        it 'returns 200' do
+          subject
+
+          expect(response).to have_http_status(:ok)
+        end
+      end
+
+      context 'with missing title' do
+        let(:params) { { id:, order:, completed: } }
+        let(:order) { 1 }
+        let(:completed) { true }
+
+        it 'returns 422' do
+          subject
+
+          expect(response).to have_http_status(:unprocessable_entity)
+        end
+      end
+
+      context 'with invalid title' do
+        let(:title) { nil }
+        let(:order) { 1 }
+        let(:completed) { true }
+
+        it 'returns 422' do
+          subject
+
+          expect(response).to have_http_status(:unprocessable_entity)
+        end
+      end
+
+      context 'with missing order' do
+        let(:params) { { id:, title:, completed: } }
+        let(:title) { Faker::Beer.brand }
+        let(:completed) { true }
+
+        it 'returns 200' do
+          subject
+
+          expect(response).to have_http_status(:ok)
+        end
+      end
+
+      context 'with invalid order' do
+        let(:title) { Faker::Beer.brand }
+        let(:order) { nil }
+        let(:completed) { true }
+
+        it 'returns 422' do
+          subject
+
+          expect(response).to have_http_status(:unprocessable_entity)
+        end
+      end
+
+      context 'with missing completed' do
+        let(:params) { { id:, title:, order: } }
+        let(:title) { Faker::Beer.brand }
+        let(:order) { 1 }
+
+        it 'returns 200' do
+          subject
+
+          expect(response).to have_http_status(:ok)
+        end
+      end
+
+      context 'with invalid completed' do
+        let(:title) { Faker::Beer.brand }
+        let(:order) { 1 }
+        let(:completed) { nil }
+
+        it 'returns 422' do
+          subject
+
+          expect(response).to have_http_status(:unprocessable_entity)
+        end
+      end
+    end
+
+    context 'with not existing todo' do
+      let(:title) { Faker::Beer.brand }
+      let(:order) { 1 }
+      let(:completed) { true }
+
+      it 'returns 404' do
+        subject
+
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+  end
+
   describe '#delete_all' do
     subject { delete :delete_all }
 
