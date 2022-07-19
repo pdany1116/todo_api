@@ -18,6 +18,10 @@ module TodoHelpers
     get todo_path(id)
   end
 
+  def delete_todos
+    delete todos_path
+  end
+
   def delete_todo(id)
     delete todo_path(id)
   end
