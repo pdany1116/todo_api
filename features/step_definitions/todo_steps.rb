@@ -28,7 +28,6 @@ When 'I update the {string} field of that todo' do |field|
   update_todo(@last_todo_id, "todos/requests/update_#{field}.json")
 end
 
-
 When 'I delete all todos' do
   delete_todos
 end
