@@ -130,8 +130,7 @@ RSpec.describe TodosController, type: :controller do
   describe '#update' do
     subject { patch :update, params: }
 
-    let(:params) { default_params }
-    let(:default_params) do
+    let(:params) do
       {
         id: 1,
         title: Faker::Beer.brand,
@@ -154,7 +153,7 @@ RSpec.describe TodosController, type: :controller do
       end
 
       context 'with missing title' do
-        let(:params) { default_params.except(:title) }
+        before { params.except!(:title) }
 
         it 'returns 200' do
           subject
@@ -164,7 +163,7 @@ RSpec.describe TodosController, type: :controller do
       end
 
       context 'with invalid title' do
-        let(:params) { default_params.update({ title: nil }) }
+        before { params.update({ title: nil }) }
 
         it 'returns 422' do
           subject
@@ -174,7 +173,7 @@ RSpec.describe TodosController, type: :controller do
       end
 
       context 'with missing order' do
-        let(:params) { default_params.except(:order) }
+        before { params.except!(:order) }
 
         it 'returns 200' do
           subject
@@ -184,7 +183,7 @@ RSpec.describe TodosController, type: :controller do
       end
 
       context 'with invalid order' do
-        let(:params) { default_params.update({ order: nil }) }
+        before { params.update({ order: nil }) }
 
         it 'returns 422' do
           subject
@@ -194,7 +193,7 @@ RSpec.describe TodosController, type: :controller do
       end
 
       context 'with missing completed' do
-        let(:params) { default_params.except(:completed) }
+        before { params.except!(:completed) }
 
         it 'returns 200' do
           subject
@@ -204,7 +203,7 @@ RSpec.describe TodosController, type: :controller do
       end
 
       context 'with invalid completed' do
-        let(:params) { default_params.update({ completed: nil }) }
+        before { params.update({ completed: nil }) }
 
         it 'returns 422' do
           subject
