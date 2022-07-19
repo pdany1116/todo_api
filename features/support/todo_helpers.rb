@@ -26,8 +26,8 @@ module TodoHelpers
     delete todo_path(id)
   end
 
-  def update_todo(id)
-    patch todo_path(id), hash_from_json_file('todos/requests/update.json')
+  def update_todo(id, filename)
+    patch todo_path(id), hash_from_json_file(filename)
     @last_todo_id = parsed_body[:id]
   end
 
