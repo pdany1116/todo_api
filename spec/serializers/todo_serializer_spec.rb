@@ -28,6 +28,6 @@ RSpec.describe TodoSerializer do
   end
 
   it 'has the correct url' do
-    expect(subject.attributes[:url]).to eq "#{ENV.fetch('HOST_URL')}#{todos_path}/#{todo.id}"
+    expect(subject.attributes[:url]).to eq "#{ENV.fetch('HOST_URL')}#{todo_path(todo)}"
   end
 end

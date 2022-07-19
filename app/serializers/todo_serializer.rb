@@ -6,8 +6,6 @@ class TodoSerializer < ActiveModel::Serializer
   attributes :id, :title, :url, :order, :completed
 
   def url
-    URI.parse("#{ENV.fetch('HOST_URL')}#{todos_path}/#{object.id}").to_s
-  rescue URI::InvalidURIError
-    "#{todos_path}/#{object.id}"
+    Iri.new(ENV.fetch('HOST_URL')).path(todo_path(object)).to_s
   end
 end

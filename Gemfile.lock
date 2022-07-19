@@ -159,6 +159,7 @@ GEM
     io-console (0.5.11)
     irb (1.4.1)
       reline (>= 0.3.0)
+    iri (0.5.1)
     json (2.6.2)
     jsonapi-renderer (0.2.2)
     loofah (2.18.0)
@@ -302,6 +303,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker
+  iri
   pg (~> 1.1)
   puma (~> 5.0)
   rack-cors
