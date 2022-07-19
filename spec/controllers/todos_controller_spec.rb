@@ -12,12 +12,6 @@ RSpec.describe TodosController, type: :controller do
 
         expect(response).to have_http_status(:ok)
       end
-
-      it 'returns empty array' do
-        subject
-
-        expect(parsed_body).to eq []
-      end
     end
 
     context 'with 5 todos added' do
@@ -47,12 +41,6 @@ RSpec.describe TodosController, type: :controller do
         subject
 
         expect(response).to have_http_status(:not_found)
-      end
-
-      it 'returns empty body' do
-        subject
-
-        expect(response.body).to be_empty
       end
     end
 

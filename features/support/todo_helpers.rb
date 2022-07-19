@@ -5,8 +5,8 @@ require './lib/json_helpers'
 module TodoHelpers
   include FactoryBot::Syntax::Methods
 
-  def create_todo
-    post todos_path, hash_from_json_file('todos/requests/create.json')
+  def create_todo(filename, args = {})
+    post todos_path, hash_from_json_file(filename, args)
     @last_todo_id = parsed_body[:id]
   end
 
