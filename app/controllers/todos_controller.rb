@@ -23,6 +23,14 @@ class TodosController < ApplicationController
     render json: '', status: :unprocessable_entity
   end
 
+  def destroy
+    Todo.find(params[:id]).destroy
+
+    render json: '', status: :no_content
+  rescue ActiveRecord::RecordNotFound
+    render json: '', status: :not_found
+  end
+
   private
 
   def create_todo_params
