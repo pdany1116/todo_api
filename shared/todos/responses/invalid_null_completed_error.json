@@ -1,0 +1,9 @@
+{
+  "errors": [
+    {
+      "title": "Completed is not a boolean",
+      "detail": null,
+      "status": 422
+    }
+  ]
+}
