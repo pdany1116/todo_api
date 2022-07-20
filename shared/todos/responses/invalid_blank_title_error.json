@@ -1,0 +1,9 @@
+{
+  "errors": [
+    {
+      "title": "Title can't be blank",
+      "detail": null,
+      "status": 422
+    }
+  ]
+}

@@ -40,10 +40,6 @@ class TodosController < ApplicationController
     todo.update!(update_todo_params)
 
     render json: todo, status: :ok, serializer: TodoSerializer
-  rescue ActionController::ParameterMissing, ActiveRecord::RecordInvalid
-    render json: '', status: :unprocessable_entity
-  rescue ActiveRecord::RecordNotFound
-    render json: '', status: :not_found
   end
 
   private
