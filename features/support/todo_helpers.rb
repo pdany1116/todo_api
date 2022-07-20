@@ -6,7 +6,7 @@ module TodoHelpers
   include FactoryBot::Syntax::Methods
 
   def create_todo(filename)
-    post todos_path, hash_from_json_file(filename, {})
+    post todos_path, hash_from_json_file(filename)
     @last_todo_id = parsed_body[:id]
   end
 
