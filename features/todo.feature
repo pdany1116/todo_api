@@ -70,3 +70,21 @@ Feature: Todo API
     Given a todo exists
     When I update the 'completed' field of that todo
     Then I will get a response with that todo with 'completed' field updated
+
+  Scenario: Update a todo with invalid title field
+    Given a todo exists
+    When I update that todo with 'null title' field
+    Then It should respond with unprocessable entity
+    And I will get a response with 'invalid blank title' error message
+
+  Scenario: Update a todo with invalid order field
+    Given a todo exists
+    When I update that todo with 'null order' field
+    Then It should respond with unprocessable entity
+    And I will get a response with 'invalid null order' error message
+
+  Scenario: Update a todo with invalid completed field
+    Given a todo exists
+    When I update that todo with 'null completed' field
+    Then It should respond with unprocessable entity
+    And I will get a response with 'invalid null completed' error message

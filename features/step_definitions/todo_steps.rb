@@ -50,6 +50,12 @@ When 'I delete that todo' do
   delete_todo(@last_todo_id)
 end
 
+When 'I update that todo with {string} field' do |field|
+  filename = "todos/requests/update_with_#{field.split.join('_')}.json"
+
+  update_todo(@last_todo_id, filename)
+end
+
 # Asserts
 
 Then 'I will get a response with a list containing {int} todo(s)' do |count|
