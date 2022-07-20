@@ -294,24 +294,24 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  active_model_serializers
-  bootsnap
-  cucumber-rails
-  database_cleaner
-  debug
-  dotenv-rails
-  factory_bot_rails
-  faker
+  active_model_serializers (~> 0.10.13)
+  bootsnap (~> 1.12.0)
+  cucumber-rails (~> 2.5.1)
+  database_cleaner (~> 2.0.1)
+  debug (~> 1.5.0)
+  dotenv-rails (~> 2.7.6)
+  factory_bot_rails (~> 6.2.0)
+  faker (~> 2.21.0)
   pg (~> 1.1)
   puma (~> 5.0)
-  rack-cors
-  rack-test
+  rack-cors (~> 1.1.1)
+  rack-test (~> 2.0.2)
   rails (~> 7.0.3)
-  rspec-rails
-  rubocop
-  rubocop-rails
-  rubocop-rspec
-  tzinfo-data
+  rspec-rails (~> 5.1.2)
+  rubocop (~> 1.31.1)
+  rubocop-rails (~> 2.15.1)
+  rubocop-rspec (~> 2.12.1)
+  tzinfo-data (~> 2.0.4)
 
 RUBY VERSION
    ruby 3.1.2p20
