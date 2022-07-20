@@ -37,11 +37,26 @@ class TodosController < ApplicationController
     render json: '', status: :no_content
   end
 
+  def update
+    todo = Todo.find(params[:id])
+    todo.update!(update_todo_params)
+
+    render json: todo, status: :ok, serializer: TodoSerializer
+  rescue ActionController::ParameterMissing, ActiveRecord::RecordInvalid
+    render json: '', status: :unprocessable_entity
+  rescue ActiveRecord::RecordNotFound
+    render json: '', status: :not_found
+  end
+
   private
 
   def create_todo_params
     params.require(:title)
 
     params.permit(:title, :order)
+  end
+
+  def update_todo_params
+    params.permit(:title, :order, :completed)
   end
 end

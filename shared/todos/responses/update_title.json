@@ -1,0 +1,7 @@
+{
+  "id": "{id}",
+  "title": "Updated title",
+  "order": 42,
+  "completed": false,
+  "url": "{url}"
+}

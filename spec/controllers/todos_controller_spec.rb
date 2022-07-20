@@ -127,6 +127,101 @@ RSpec.describe TodosController, type: :controller do
     end
   end
 
+  describe '#update' do
+    subject { patch :update, params: }
+
+    let(:params) do
+      {
+        id: 1,
+        title: Faker::Beer.brand,
+        order: 1,
+        completed: true
+      }
+    end
+
+    context 'with existing todo' do
+      before do
+        create(:todo, id: params[:id])
+      end
+
+      context 'with valid params' do
+        it 'returns 200' do
+          subject
+
+          expect(response).to have_http_status(:ok)
+        end
+      end
+
+      context 'with missing title' do
+        before { params.except!(:title) }
+
+        it 'returns 200' do
+          subject
+
+          expect(response).to have_http_status(:ok)
+        end
+      end
+
+      context 'with invalid title' do
+        before { params.update({ title: nil }) }
+
+        it 'returns 422' do
+          subject
+
+          expect(response).to have_http_status(:unprocessable_entity)
+        end
+      end
+
+      context 'with missing order' do
+        before { params.except!(:order) }
+
+        it 'returns 200' do
+          subject
+
+          expect(response).to have_http_status(:ok)
+        end
+      end
+
+      context 'with invalid order' do
+        before { params.update({ order: nil }) }
+
+        it 'returns 422' do
+          subject
+
+          expect(response).to have_http_status(:unprocessable_entity)
+        end
+      end
+
+      context 'with missing completed' do
+        before { params.except!(:completed) }
+
+        it 'returns 200' do
+          subject
+
+          expect(response).to have_http_status(:ok)
+        end
+      end
+
+      context 'with invalid completed' do
+        before { params.update({ completed: nil }) }
+
+        it 'returns 422' do
+          subject
+
+          expect(response).to have_http_status(:unprocessable_entity)
+        end
+      end
+    end
+
+    context 'with not existing todo' do
+      it 'returns 404' do
+        subject
+
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+  end
+
   describe '#delete_all' do
     subject { delete :delete_all }
 
