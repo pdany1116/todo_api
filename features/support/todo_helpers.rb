@@ -32,7 +32,7 @@ module TodoHelpers
   end
 
   def todos_url_for(id)
-    "#{ENV.fetch('HOST_URL')}/#{id}"
+    "#{ENV.fetch('HOST_URL')}#{todos_path}/#{id}"
   end
 
   def hash_from_json_file(filename, args = {})
