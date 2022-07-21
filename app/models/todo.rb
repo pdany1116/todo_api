@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Todo < ApplicationRecord
+  include SoftDeletable
+
   enum status: { active: 0, deleted: 1 }
 
   validates :title, presence: true
