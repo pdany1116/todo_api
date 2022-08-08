@@ -27,5 +27,11 @@ RSpec.describe Todo, type: :model do
 
       it { is_expected.not_to be_valid }
     end
+
+    context 'with invalid status' do
+      subject { build(:todo, status: nil) }
+
+      it { is_expected.not_to be_valid }
+    end
   end
 end

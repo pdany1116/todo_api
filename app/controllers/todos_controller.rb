@@ -24,7 +24,7 @@ class TodosController < ApplicationController
   end
 
   def destroy
-    Todo.find(params[:id]).destroy
+    Todo.find(params[:id]).delete
 
     render json: '', status: :no_content
   rescue ActiveRecord::RecordNotFound
@@ -32,7 +32,7 @@ class TodosController < ApplicationController
   end
 
   def delete_all
-    Todo.delete_all
+    Todo.all.each(&:delete)
 
     render json: '', status: :no_content
   end
