@@ -32,3 +32,8 @@ group :development, :test do
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
 end
+
+group :development do
+  gem 'graphiql-rails', '~> 1.8'
+  gem 'sass-rails', '~> 6.0'
+end
