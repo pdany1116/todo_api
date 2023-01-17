@@ -19,9 +19,3 @@ Naming/AccessorMethodName:
   Exclude:
     - 'spec/*/*'
     - 'features/*/*'
-
-RSpec/NamedSubject:
-  Enabled: false
-
-RSpec/NestedGroups:
-  Max: 4

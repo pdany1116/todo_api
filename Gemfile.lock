@@ -154,6 +154,7 @@ GEM
     ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    graphql (2.0.16)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
     io-console (0.5.11)
@@ -268,6 +269,8 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.18.0)
       parser (>= 3.1.1.0)
+    rubocop-graphql (0.19.0)
+      rubocop (>= 0.87, < 2)
     rubocop-rails (2.15.1)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
@@ -303,6 +306,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker
+  graphql (~> 2.0)
   iri (~> 0.5.1)
   pg (~> 1.1)
   puma (~> 5.0)
@@ -311,6 +315,7 @@ DEPENDENCIES
   rails (~> 7.0.3)
   rspec-rails
   rubocop
+  rubocop-graphql
   rubocop-rails
   rubocop-rspec
   tzinfo-data
