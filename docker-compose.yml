@@ -3,15 +3,14 @@ version: "3.7"
 services:
   postgres:
     # Image to build
-    image: postgres:latest
+    image: postgres:15-alpine
     container_name: todo-api-db
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
       - '5432:5432'
     volumes:
-      - /data:/var/lib/postgresql/data
-
+      - ./tmp/db:/var/lib/postgresql/data
   todo-api:
     build:
       context: .
