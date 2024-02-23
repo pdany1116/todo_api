@@ -1,0 +1,9 @@
+{
+  "errors": [
+    {
+      "title": "param is missing or the value is empty: title",
+      "detail": null,
+      "status": 422
+    }
+  ]
+}

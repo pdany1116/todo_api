@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class TodosController < ApplicationController
+  include ErrorHandler
+
   def index
     todos = Todo.all
 
@@ -11,24 +13,18 @@ class TodosController < ApplicationController
     todo = Todo.find(params[:id])
 
     render json: todo, status: :ok, serializer: TodoSerializer
-  rescue ActiveRecord::RecordNotFound
-    render json: '', status: :not_found
   end
 
   def create
     todo = Todo.create!(create_todo_params)
 
     render json: todo, status: :created, serializer: TodoSerializer
-  rescue ActionController::ParameterMissing, ActiveRecord::RecordInvalid
-    render json: '', status: :unprocessable_entity
   end
 
   def destroy
     Todo.find(params[:id]).destroy
 
     render json: '', status: :no_content
-  rescue ActiveRecord::RecordNotFound
-    render json: '', status: :not_found
   end
 
   def delete_all
@@ -42,10 +38,6 @@ class TodosController < ApplicationController
     todo.update!(update_todo_params)
 
     render json: todo, status: :ok, serializer: TodoSerializer
-  rescue ActionController::ParameterMissing, ActiveRecord::RecordInvalid
-    render json: '', status: :unprocessable_entity
-  rescue ActiveRecord::RecordNotFound
-    render json: '', status: :not_found
   end
 
   private

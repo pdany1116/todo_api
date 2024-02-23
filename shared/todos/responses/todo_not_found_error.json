@@ -1,0 +1,9 @@
+{
+  "errors": [
+    {
+      "title": "Couldn't find Todo with 'id'=42",
+      "detail": null,
+      "status": 404
+    }
+  ]
+}
